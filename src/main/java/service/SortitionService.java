@@ -26,18 +26,18 @@ public class SortitionService {
     private String getTeam2(List<String> fields) {
         List<String> team2 = fields.stream().skip(fields.size() / 2).collect(Collectors.toList());
         StringBuilder teamBuilder = new StringBuilder();
-        for (String field : team2) {
-            teamBuilder.append(field +"\n");
-        }
+
+        team2.forEach(field -> teamBuilder.append(field + "\n"));
+
         return teamBuilder.toString();
     }
 
     private String getTeam1(List<String> fields) {
         List<String> team1 = fields.stream().limit(fields.size() / 2).collect(Collectors.toList());
         StringBuilder teamBuilder = new StringBuilder();
-        for (String field : team1) {
-            teamBuilder.append(field +"\n");
-        }
+
+        team1.forEach(field -> teamBuilder.append(field + "\n"));
+
         return teamBuilder.toString();
     }
 

@@ -1,4 +1,4 @@
-package events;
+package commands;
 
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.MessageEmbed;
@@ -11,15 +11,15 @@ public class Sortition extends ListenerAdapter {
     SortitionService sortitionService = new SortitionService();
 
     @Override
-    public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
-        String messageSent = event.getMessage().getContentRaw();
-        if (!event.getAuthor().isBot() && isSortitionMessage(messageSent)) {
+    public void onGuildMessageReceived(GuildMessageReceivedEvent command) {
+        String messageSent = command.getMessage().getContentRaw();
+        if (!command.getAuthor().isBot() && isSortitionMessage(messageSent)) {
             String[] teams = sortitionService.getSortedFields(messageSent);
             EmbedBuilder embedBuilder = new EmbedBuilder()
                     .setTitle(":flag_white:  Sorteio de Times :flag_white:")
                     .addField(new MessageEmbed.Field("TIME 1", teams[0], true))
                     .addField(new MessageEmbed.Field("TIME 2", teams[1], true));
-            event.getChannel().sendMessage(embedBuilder.build()).queue();
+            command.getChannel().sendMessage(embedBuilder.build()).queue();
         }
     }
 
@@ -28,6 +28,6 @@ public class Sortition extends ListenerAdapter {
                 && messageSent
                     .replace("!", "")
                     .toUpperCase()
-                    .contains("SORTEIO");
+                    .contains("SORTEIO ");
     }
 }
