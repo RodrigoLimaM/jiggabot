@@ -7,7 +7,7 @@ import javax.security.auth.login.LoginException;
 
 public class Main {
     public static void main(String[] args) throws LoginException {
-        Dotenv dotenv = Dotenv.load();
+        Dotenv dotenv = Dotenv.configure().directory("/").load();
 
         JDA jda = new JDABuilder(dotenv.get("BOT_KEY")).build();
 
