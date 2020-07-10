@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class SortitionService {
+public class DrawService {
 
     public String[] getSortedFields(String message) {
         List<String> fields = Arrays.asList(messageWithoutPrefix(message)
@@ -27,7 +27,7 @@ public class SortitionService {
         List<String> team2 = fields.stream().skip(fields.size() / 2).collect(Collectors.toList());
         StringBuilder teamBuilder = new StringBuilder();
 
-        team2.forEach(field -> teamBuilder.append(field + "\n"));
+        team2.forEach(field -> teamBuilder.append(field).append("\n"));
 
         return teamBuilder.toString();
     }
@@ -36,12 +36,13 @@ public class SortitionService {
         List<String> team1 = fields.stream().limit(fields.size() / 2).collect(Collectors.toList());
         StringBuilder teamBuilder = new StringBuilder();
 
-        team1.forEach(field -> teamBuilder.append(field + "\n"));
+        team1.forEach(field -> teamBuilder.append(field).append("\n"));
 
         return teamBuilder.toString();
     }
 
     private String messageWithoutPrefix(String message) {
-        return message.replaceAll("(?i)!sorteio ", "");
+        return message.replaceAll("(?i)!sorteio ", "")
+                .replaceAll("(?i)!draw ", "");
     }
 }
