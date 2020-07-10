@@ -8,8 +8,11 @@ import service.DrawService;
 import service.MessageReceivedService;
 
 import java.awt.*;
+import java.util.logging.Logger;
 
 public class Draw extends ListenerAdapter {
+
+    private static final Logger LOGGER = Logger.getLogger(Draw.class.getName());
 
     MessageReceivedService messageReceivedService = new MessageReceivedService();
 
@@ -28,7 +31,9 @@ public class Draw extends ListenerAdapter {
                     .addField(new MessageEmbed.Field("TIME 1", teams[0], true))
                     .addField(new MessageEmbed.Field("TIME 2", teams[1], true))
                     .setFooter("https://github.com/RodrigoLimaM/jiggabot", "https://bots.ondiscord.xyz/favicon/android-chrome-256x256.png")
-                    .setColor(new Color(0x8b008b));;
+                    .setColor(new Color(0x8b008b));
+
+            LOGGER.info("Message: " +messageSent);
 
             event.getChannel().sendMessage(embedBuilder.build()).queue();
         }

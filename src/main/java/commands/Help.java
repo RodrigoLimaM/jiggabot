@@ -5,9 +5,12 @@ import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import service.MessageReceivedService;
 
-import java.awt.Color;
+import java.awt.*;
+import java.util.logging.Logger;
 
 public class Help extends ListenerAdapter {
+
+    private static final Logger LOGGER = Logger.getLogger(Help.class.getName());
 
     MessageReceivedService messageReceivedService = new MessageReceivedService();
 
@@ -24,6 +27,7 @@ public class Help extends ListenerAdapter {
                     .setFooter("https://github.com/RodrigoLimaM/jiggabot", "https://bots.ondiscord.xyz/favicon/android-chrome-256x256.png")
                     .setColor(new Color(0x8b008b));
 
+            LOGGER.info("Message: " +messageSent);
 
             event.getChannel().sendMessage(embedBuilder.build()).queue();
         }

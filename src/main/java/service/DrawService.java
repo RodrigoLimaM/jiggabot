@@ -13,8 +13,13 @@ public class DrawService {
 
         Collections.shuffle(fields);
 
-        String team1 = getTeam1(fields);
-        String team2 = getTeam2(fields);
+        int fieldsHalfSize = fields.size() / 2;
+
+        List<String> team1List = fields.stream().limit(fieldsHalfSize).collect(Collectors.toList());
+        List<String> team2List = fields.stream().skip(fieldsHalfSize).collect(Collectors.toList());
+
+        String team1 = getTeam(team1List);
+        String team2 = getTeam(team2List);
 
         int orderCriteria = (int) Math.round(Math.random());
         if (orderCriteria == 0)
@@ -23,20 +28,10 @@ public class DrawService {
             return new String[] {team2, team1};
     }
 
-    private String getTeam2(List<String> fields) {
-        List<String> team2 = fields.stream().skip(fields.size() / 2).collect(Collectors.toList());
+    private String getTeam(List<String> fields) {
         StringBuilder teamBuilder = new StringBuilder();
 
-        team2.forEach(field -> teamBuilder.append(field).append("\n"));
-
-        return teamBuilder.toString();
-    }
-
-    private String getTeam1(List<String> fields) {
-        List<String> team1 = fields.stream().limit(fields.size() / 2).collect(Collectors.toList());
-        StringBuilder teamBuilder = new StringBuilder();
-
-        team1.forEach(field -> teamBuilder.append(field).append("\n"));
+        fields.forEach(field -> teamBuilder.append(field).append("\n"));
 
         return teamBuilder.toString();
     }
