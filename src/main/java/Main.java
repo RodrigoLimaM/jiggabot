@@ -1,6 +1,7 @@
 import commands.Draw;
 import commands.Help;
 import events.Greetings;
+import events.NewMember;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
@@ -18,5 +19,6 @@ public class Main {
         jda.addEventListener(new Draw());
         jda.addEventListener(new Help());
         jda.addEventListener(new Greetings());
+        jda.addEventListener(new NewMember());
     }
 }

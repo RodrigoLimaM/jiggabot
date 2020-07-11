@@ -19,17 +19,17 @@ public class Greetings extends ListenerAdapter {
                 .setColor(new Color(0x8b008b));
 
         if (!event.getAuthor().isBot() && isGreetingMessage(messageSent, "BOA NOITE")){
-            embedBuilder.setDescription("Boa Noite " +messageAuthor +"! :new_moon_with_face:");
+            embedBuilder.setDescription("Boa noite " +messageAuthor +"! :new_moon_with_face:");
             sendMessageToChannel(embedBuilder, messageSent, event);
         }
 
         if (!event.getAuthor().isBot() && isGreetingMessage(messageSent, "BOA TARDE")){
-            embedBuilder.setDescription("Boa Tarde " +messageAuthor +"! :sun_with_face:");
+            embedBuilder.setDescription("Boa tarde " +messageAuthor +"! :sun_with_face:");
             sendMessageToChannel(embedBuilder, messageSent, event);
         }
 
         if (!event.getAuthor().isBot() && isGreetingMessage(messageSent, "BOM DIA")){
-            embedBuilder.setDescription("Bom Dia " +messageAuthor +"! :partly_sunny:");
+            embedBuilder.setDescription("Bom dia " +messageAuthor +"! :partly_sunny:");
             sendMessageToChannel(embedBuilder, messageSent, event);
         }
     }
