@@ -1,15 +1,14 @@
 package br.com.jiggabot.events;
 
+import lombok.extern.slf4j.Slf4j;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 import java.awt.*;
-import java.util.logging.Logger;
 
+@Slf4j
 public class Greetings extends ListenerAdapter {
-
-    private static final Logger LOGGER = Logger.getLogger(Greetings.class.getName());
 
     public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
         String messageSent = event.getMessage().getContentRaw();
@@ -41,6 +40,6 @@ public class Greetings extends ListenerAdapter {
     private void sendMessageToChannel(EmbedBuilder embedBuilder, String messageSent, GuildMessageReceivedEvent event) {
         event.getChannel().sendMessage(embedBuilder.build()).queue();
 
-        LOGGER.info("Message: " +messageSent);
+        log.info("Message: {}", messageSent);
     }
 }

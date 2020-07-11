@@ -1,16 +1,15 @@
 package br.com.jiggabot.commands;
 
 import br.com.jiggabot.service.MessageReceivedService;
+import lombok.extern.slf4j.Slf4j;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 import java.awt.*;
-import java.util.logging.Logger;
 
+@Slf4j
 public class Help extends ListenerAdapter {
-
-    private static final Logger LOGGER = Logger.getLogger(Help.class.getName());
 
     MessageReceivedService messageReceivedService = new MessageReceivedService();
 
@@ -27,7 +26,7 @@ public class Help extends ListenerAdapter {
                     .setFooter("https://github.com/RodrigoLimaM/jiggabot", "https://bots.ondiscord.xyz/favicon/android-chrome-256x256.png")
                     .setColor(new Color(0x8b008b));
 
-            LOGGER.info("Message: " +messageSent);
+            log.info("Message: {}" , messageSent);
 
             event.getChannel().sendMessage(embedBuilder.build()).queue();
         }

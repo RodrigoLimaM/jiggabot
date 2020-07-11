@@ -1,5 +1,6 @@
 package br.com.jiggabot.events;
 
+import lombok.extern.slf4j.Slf4j;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.MessageEmbed;
 import net.dv8tion.jda.core.entities.TextChannel;
@@ -7,11 +8,9 @@ import net.dv8tion.jda.core.events.guild.member.GuildMemberJoinEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 import java.awt.*;
-import java.util.logging.Logger;
 
+@Slf4j
 public class NewMember extends ListenerAdapter {
-
-    private static final Logger LOGGER = Logger.getLogger(NewMember.class.getName());
 
     @Override
     public void onGuildMemberJoin(GuildMemberJoinEvent event) {
@@ -29,7 +28,7 @@ public class NewMember extends ListenerAdapter {
 
         textChannel.sendMessage(messageEmbed).queue();
 
-        LOGGER.info("New member: " +memberName);
+        log.info("New member: {}", memberName);
     }
 
 
