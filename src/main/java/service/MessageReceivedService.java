@@ -1,4 +1,4 @@
-package br.com.jiggabot.service;
+package service;
 
 public class MessageReceivedService {
     public boolean isCommandMessage(String message, String ...args) {
