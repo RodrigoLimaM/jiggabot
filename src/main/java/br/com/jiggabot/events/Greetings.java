@@ -1,6 +1,5 @@
-package events;
+package br.com.jiggabot.events;
 
-import commands.Help;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
@@ -10,7 +9,7 @@ import java.util.logging.Logger;
 
 public class Greetings extends ListenerAdapter {
 
-    private static final Logger LOGGER = Logger.getLogger(Help.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(Greetings.class.getName());
 
     public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
         String messageSent = event.getMessage().getContentRaw();

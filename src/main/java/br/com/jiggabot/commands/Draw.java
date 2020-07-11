@@ -1,29 +1,35 @@
-package commands;
+package br.com.jiggabot.commands;
 
+import br.com.jiggabot.service.DrawService;
+import br.com.jiggabot.service.MessageReceivedService;
 import net.dv8tion.jda.core.EmbedBuilder;
+import net.dv8tion.jda.core.entities.MessageEmbed;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
-import service.MessageReceivedService;
 
 import java.awt.*;
 import java.util.logging.Logger;
 
-public class Help extends ListenerAdapter {
+public class Draw extends ListenerAdapter {
 
-    private static final Logger LOGGER = Logger.getLogger(Help.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(Draw.class.getName());
 
     MessageReceivedService messageReceivedService = new MessageReceivedService();
+
+    DrawService drawService = new DrawService();
 
     @Override
     public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
         String messageSent = event.getMessage().getContentRaw();
         if (!event.getAuthor().isBot()
-                && messageReceivedService.isCommandMessage(messageSent, "AJUDA", "HELP", "COMANDOS", "COMMANDS")) {
+                && messageReceivedService.isCommandMessage(messageSent, "SORTEIO", "DRAW")) {
+
+            String[] teams = drawService.getSortedFields(messageSent);
 
             EmbedBuilder embedBuilder = new EmbedBuilder()
-                    .setTitle(":robot: Comando do JiggaBot :robot:")
-                    .setDescription("**!ajuda, !help, !comandos ou !commands** - Mostra todos os comandos do bot;\n" +
-                            "**!sorteio ou !draw** - Realiza sorteio para criação de dois times.")
+                    .setTitle(":flag_white:  Sorteio de Times :flag_white:")
+                    .addField(new MessageEmbed.Field("TIME 1", teams[0], true))
+                    .addField(new MessageEmbed.Field("TIME 2", teams[1], true))
                     .setFooter("https://github.com/RodrigoLimaM/jiggabot", "https://bots.ondiscord.xyz/favicon/android-chrome-256x256.png")
                     .setColor(new Color(0x8b008b));
 
@@ -32,4 +38,5 @@ public class Help extends ListenerAdapter {
             event.getChannel().sendMessage(embedBuilder.build()).queue();
         }
     }
+
 }

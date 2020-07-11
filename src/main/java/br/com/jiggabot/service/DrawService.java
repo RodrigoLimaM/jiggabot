@@ -1,4 +1,4 @@
-package service;
+package br.com.jiggabot.service;
 
 import java.util.Arrays;
 import java.util.Collections;
