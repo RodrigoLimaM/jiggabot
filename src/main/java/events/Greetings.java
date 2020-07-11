@@ -13,22 +13,23 @@ public class Greetings extends ListenerAdapter {
 
     public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
         String messageSent = event.getMessage().getContentRaw();
+        String messageAuthor = event.getAuthor().getName();
 
         EmbedBuilder embedBuilder = new EmbedBuilder()
                 .setColor(new Color(0x8b008b));
 
         if (!event.getAuthor().isBot() && isGreetingMessage(messageSent, "BOA NOITE")){
-            embedBuilder.setDescription("Boa Noite! :new_moon_with_face:");
+            embedBuilder.setDescription("Boa Noite " +messageAuthor +"! :new_moon_with_face:");
             sendMessageToChannel(embedBuilder, messageSent, event);
         }
 
         if (!event.getAuthor().isBot() && isGreetingMessage(messageSent, "BOA TARDE")){
-            embedBuilder.setDescription("Boa Tarde! :sun_with_face:");
+            embedBuilder.setDescription("Boa Tarde " +messageAuthor +"! :sun_with_face:");
             sendMessageToChannel(embedBuilder, messageSent, event);
         }
 
         if (!event.getAuthor().isBot() && isGreetingMessage(messageSent, "BOM DIA")){
-            embedBuilder.setDescription("Bom Dia! :partly_sunny:");
+            embedBuilder.setDescription("Bom Dia " +messageAuthor +"! :partly_sunny:");
             sendMessageToChannel(embedBuilder, messageSent, event);
         }
     }
