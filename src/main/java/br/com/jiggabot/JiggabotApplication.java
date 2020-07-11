@@ -18,7 +18,7 @@ public class JiggabotApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		JDA jda = new JDABuilder("NzMwOTA3MDI0MTYxODk4NjI3.XwfYMA.PshMV5SWbdZQWvcaLwDp6ZmqG3s").build();
+		JDA jda = new JDABuilder(System.getenv("BOT_KEY")).build();
 
 		jda.addEventListener(new Draw());
 		jda.addEventListener(new Help());
