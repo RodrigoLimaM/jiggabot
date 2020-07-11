@@ -86,7 +86,7 @@
 					<assembleDirectory>target</assembleDirectory>
 					<programs>
 						<program>
-							<mainClass>br.com.jiggabot.JiggabotApplication</mainClass>
+							<mainClass>JiggabotApplication</mainClass>
 							<name>main</name>
 						</program>
 					</programs>
