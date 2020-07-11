@@ -31,6 +31,6 @@ public class Main {
         jda.addEventListener(new Help());
         jda.addEventListener(new Greetings());
         jda.addEventListener(new NewMember());
-        jda.addEventListener(new NickameChange());
+//        jda.addEventListener(new NickameChange());
     }
 }
