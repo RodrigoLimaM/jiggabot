@@ -1,4 +1,4 @@
-package events;
+package br.com.jiggabot.events;
 
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.MessageEmbed;
