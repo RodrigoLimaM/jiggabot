@@ -4,16 +4,16 @@ import lombok.extern.slf4j.Slf4j;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.MessageEmbed;
 import net.dv8tion.jda.core.entities.TextChannel;
-import net.dv8tion.jda.core.events.guild.member.GuildMemberJoinEvent;
+import net.dv8tion.jda.core.events.guild.member.GuildMemberNickChangeEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 import java.awt.*;
 
 @Slf4j
-public class NewMember extends ListenerAdapter {
+public class NickameChange extends ListenerAdapter {
 
     @Override
-    public void onGuildMemberJoin(GuildMemberJoinEvent event) {
+    public void onGuildMemberNickChange(GuildMemberNickChangeEvent event) {
 
         //TODO Make null safe
         TextChannel textChannel = event
@@ -21,19 +21,16 @@ public class NewMember extends ListenerAdapter {
                 .getTextChannelsByName("general", true)
                 .get(0);
 
-        String memberName = event.getUser().getName();
+        String previousNick = event.getPrevNick() == null ? event.getUser().getName() : event.getPrevNick();
+        String newNick = event.getNewNick();
 
         MessageEmbed messageEmbed = new EmbedBuilder()
                 .setColor(new Color(0x8b008b))
-                .setDescription("Bem vindo " +memberName +"! :slight_smile:" )
+                .setDescription(previousNick +" trocou o apelido para: " +newNick +". :scream:")
                 .build();
 
         textChannel.sendMessage(messageEmbed).queue();
 
-        log.info("New member: {}", memberName);
+        log.info("Previous nickname: {} | New nickname: {}", previousNick, newNick);
     }
-
-
-
-
 }

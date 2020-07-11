@@ -4,6 +4,7 @@ import br.com.jiggabot.commands.Draw;
 import br.com.jiggabot.commands.Help;
 import br.com.jiggabot.events.Greetings;
 import br.com.jiggabot.events.NewMember;
+import br.com.jiggabot.events.NickameChange;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
@@ -30,5 +31,6 @@ public class Main {
         jda.addEventListener(new Help());
         jda.addEventListener(new Greetings());
         jda.addEventListener(new NewMember());
+        jda.addEventListener(new NickameChange());
     }
 }
