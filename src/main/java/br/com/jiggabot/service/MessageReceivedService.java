@@ -2,6 +2,7 @@ package br.com.jiggabot.service;
 
 public class MessageReceivedService {
     public boolean isCommandMessage(String message, String ...args) {
+        //TODO make null safe
         return message.charAt(0) == '!'
                 && isValidCommandType(message, args);
     }
