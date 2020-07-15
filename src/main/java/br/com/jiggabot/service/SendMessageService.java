@@ -10,6 +10,8 @@ import java.awt.Color;
 
 public class SendMessageService {
 
+    private static final String CHANNEL_NAME = "general";
+
     public void sendMessage(MessageEmbed messageEmbed, GenericGuildMessageEvent event) {
         event.getChannel().sendMessage(messageEmbed).queue();
     }
@@ -18,9 +20,13 @@ public class SendMessageService {
         //TODO Make null safe
         TextChannel textChannel = event
                 .getGuild()
-                .getTextChannelsByName("general", true)
+                .getTextChannelsByName(CHANNEL_NAME, true)
                 .get(0);
 
+        textChannel.sendMessage(messageEmbed).queue();
+    }
+
+    public void sendMessageToSpecificChannel(MessageEmbed messageEmbed, TextChannel textChannel) {
         textChannel.sendMessage(messageEmbed).queue();
     }
 
